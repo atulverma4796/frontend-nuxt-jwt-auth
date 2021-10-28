@@ -1,15 +1,24 @@
 export const state=()=>({
-    errors:{}
+    errors:{},
+    busy:false,
+    loggedIn:false,
+    strategy:"local",
+    user:false
 })
 export const getters={
     errors(state){
         return  state.errors;
+    },
+    authenticated(state){
+        return state.loggedIn;
+    },
+    user(state){
+        return state.user;
     }
 }
 export const mutations={
     SET_VALIDATION_ERRORS(state,errors){
         state.errors=errors;
-        console.log(state.errors,"state Error")
     }
 }
 export const actions={

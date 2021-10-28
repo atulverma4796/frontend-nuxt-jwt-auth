@@ -26,8 +26,9 @@ router:{
 },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "./plugins/mixins/validation.js",
-    "./plugins/axios.js"
+    "./plugins/mixins/validation",
+    "./plugins/mixins/user",
+    "./plugins/axios"
   ],
   auth:{
     strategies: {
@@ -43,7 +44,7 @@ router:{
             method: 'get',
             propertyName: 'data',
           },
-          logout: 'logout',
+          logout: 'auth/logout',
           method: 'get',
         },
       },
