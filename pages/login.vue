@@ -33,6 +33,7 @@
 </template>
 <script>
 export default {
+    middleware:'guest',
     data(){
         return{
               form:{
@@ -44,7 +45,7 @@ export default {
     methods:{
          async login(){
         this.$auth.login({data:this.form});
-        if(!this.form.email===""){
+        if(this.form.email!==""){
         this.$router.push({name:'index'});
         }
     }
