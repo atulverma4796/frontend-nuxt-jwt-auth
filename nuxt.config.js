@@ -1,51 +1,48 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'jwtauth',
+    title: "jwtauth",
     htmlAttrs: {
-      lang: 'en'
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { hid: "description", name: "description", content: "" },
+      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
-router:{
-  middleware:[
-    'clearValidationError'
-  ]
-},
+  css: [],
+  router: {
+    middleware: ["clearValidationError"],
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "./plugins/mixins/validation",
-    "./plugins/mixins/user",
-    "./plugins/axios"
+    "./plugins/axios",
   ],
-  auth:{
+  auth: {
     strategies: {
       local: {
+        token: {
+          property: 'jwt',
+        },
+        user: {
+          property: false,
+        },
         endpoints: {
           login: {
             url: 'auth/login',
             method: 'post',
-            propertyName: 'token',
           },
           user: {
             url: 'me',
             method: 'get',
-            propertyName: 'data',
           },
-          logout: 'auth/logout',
-          method: 'get',
+          logout:{url:"auth/logout", method:'get'}
         },
       },
     },
@@ -53,33 +50,54 @@ router:{
       login: '/auth/login',
       home: '/',
     },
+  
   },
+  // strategies: {
+  //   local: {
+  //     endpoints: {
+  //       login: {
+  //         url: 'auth/login',
+  //         method: 'post',
+  //         propertyName: 'token',
+  //       },
+  //       user: {
+  //         url: 'me',
+  //         method: 'get',
+  //         propertyName: false,
+  //       },
+  //       logout: 'auth/logout',
+  //       method: 'get',
+  //     },
+  //   },
+  // },
+  // redirect: {
+  //   login: '/auth/login',
+  //   home: '/',
+  // },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-  ],
+  buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/bootstrap
-    'bootstrap-vue/nuxt',
+    "bootstrap-vue/nuxt",
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    "@nuxtjs/axios",
+    "@nuxtjs/auth-next",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL:"http://localhost:8000/api"
+    baseURL: "http://localhost:8000/api",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCss:true,
-    extend(config,ctx){}
-  
-  }
-}
+    extractCss: true,
+    extend(config, ctx) {},
+  },
+};

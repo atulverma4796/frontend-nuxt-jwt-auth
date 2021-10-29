@@ -11,8 +11,8 @@
         <b-navbar-nav class="ml-auto">
           <template v-if="authenticated">
             <b-nav-item-dropdown slot="button-content">
-              <template>{{user.name}}</template>
-              <b-nav-item-dropdown @click.prevent="logout">Sign out</b-nav-item-dropdown>
+              <div><b>{{this.$auth.user}}</b></div>
+              <div @click.prevent="logout" class="cursor">Sign out</div>
             </b-nav-item-dropdown>
           </template>
           <template v-else>
@@ -34,7 +34,14 @@ export default {
   methods:{
     logout(){
       this.$auth.logout();
+      this.$router.push({name:'login'})
+      this.$store.dispatch('redirect')
     }
   }
 }
 </script>
+<style scoped>
+.cursor{
+  cursor: pointer;
+}
+</style>

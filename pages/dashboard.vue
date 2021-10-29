@@ -1,10 +1,15 @@
 
   
 <template>
-    <h3 class="d-flex justify-content-center">Welcome to the dashboard {{user.name}}</h3>
+    <h3 class="d-flex justify-content-center spacing">Welcome to the dashboard  <b> {{this.$auth.user}}</b></h3>
 </template>
 <script>
 export default {
-    // middleware:'auth'
+    middleware:'guest'
 }
 </script>
+<style scoped>
+.spacing{
+    white-space: pre-wrap;
+}
+</style>

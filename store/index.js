@@ -3,7 +3,7 @@ export const state=()=>({
     busy:false,
     loggedIn:false,
     strategy:"local",
-    user:false
+    user:"",
 })
 export const getters={
     errors(state){
@@ -19,6 +19,9 @@ export const getters={
 export const mutations={
     SET_VALIDATION_ERRORS(state,errors){
         state.errors=errors;
+    },
+    LOGIN_STATUS(state,boolean){
+        state.loggedIn=boolean
     }
 }
 export const actions={
@@ -27,5 +30,12 @@ setErrors({commit},errors){
 },
 clearErrors({commit}){
     commit('SET_VALIDATION_ERRORS',{})
+},
+loginSuccess({commit}){
+    commit('LOGIN_STATUS',true)
+},
+redirect({commit}){
+    commit('LOGIN_STATUS',false)
 }
+
 }
